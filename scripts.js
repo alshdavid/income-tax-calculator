@@ -26,9 +26,15 @@ const presets = Object.freeze({
       { bracketStart: 180_001, bracketEnd: Number.MAX_SAFE_INTEGER, taxRatePercent: 45, additionalCharge: 0 },
     ]
   },
-  NZ: {
+  NZ_2025: {
     currencyCode: 'NZD',
-    brackets: []
+    brackets: [
+      { bracketStart: 0, bracketEnd: 15_600, taxRatePercent: 10.5, additionalCharge: 0},
+      { bracketStart: 15_601, bracketEnd: 53_500, taxRatePercent: 17.5, additionalCharge: 0 },
+      { bracketStart: 53_501, bracketEnd: 78_100, taxRatePercent: 30, additionalCharge: 0 },
+      { bracketStart: 78_101, bracketEnd: 180_000, taxRatePercent: 33, additionalCharge: 0 },
+      { bracketStart: 180_001, bracketEnd: Number.MAX_SAFE_INTEGER, taxRatePercent: 39, additionalCharge: 0 },
+    ]
   },
   TH: {
     currencyCode: 'THB',
