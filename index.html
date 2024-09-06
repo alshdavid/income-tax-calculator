@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Tax Calculator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+    integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+
+    <style>
+      body {
+        padding: 20px;
+      }
+
+      tr {
+        border-bottom: 1px solid #cbcbcb;
+      }
+    </style>
+</head>
+
+<body>
+  <script type="module" src="./scripts.js"></script>
+
+  <main v-scope>
+    <h1>Simple Income Tax Calculator</h1>
+    <p>A basic tax calculator for different countries</p>
+    <p>May not be accurate, not financial advice, use at your own risk</p>
+
+    <div v-scope>
+      <table class="pure-table">
+        <tbody>
+          <tr>
+            <td>Preset</td>
+            <td>
+              <select @change="selectPreset">
+                <option v-for="preset in presets" v-value="preset[0]">{{preset[0]}}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Income</td>
+            <td><input type="number" v-model="income"></td>
+          </tr>
+          <!-- <tr>
+            <td>Currency</td>
+            <td>
+              <select @change="selectCurrencyRate">
+                <option v-for="currencyCode in currencyCodes" v-value="currencyCode">{{currencyCode}}</option>
+              </select>
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+
+      <br>
+      <br>
+
+      <table class="pure-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Bracket Start</th>
+            <th>Bracket End</th>
+            <th>Tax Rate</th>
+            <th>Additional Charges</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(bracket, index) in brackets">
+            <td><button @click="removeRow(index)">-</button></td>
+            <td><input type="number" v-model="bracket.bracketStart" /> <span>{{targetCurrency}}</span></td>
+            <td><input type="number" v-model="bracket.bracketEnd" /> <span>{{targetCurrency}}</span></td>
+            <td><input type="number" v-model="bracket.taxRatePercent" /></td>
+            <td><input type="number" v-model="bracket.additionalCharge" /></td>
+          </tr>
+          <tr>
+            <td><button @click="addRow()">+</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+      <br>
+
+      <table class="pure-table">
+        <tbody>
+          <tr>
+            <td>Tax</td>
+            <td><input type="text" v-model="tax" disabled> <span>{{targetCurrency}}</span></td>
+          </tr>
+          <tr>
+            <td>Effective Tax Rate</td>
+            <td><input type="text" v-model="effectiveTaxRate" disabled></td>
+          </tr>
+          <tr>
+            <td>Take Home Pay</td>
+            <td><input type="text" v-model="takeHomePay" disabled> <span>{{targetCurrency}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+      
+  
+  </main>
+
+</body>
+
+</html>
